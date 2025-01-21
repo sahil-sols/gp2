@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: Trigger ArgoCD Sync
         run: |
-          curl -X POST -u "admin:${{ secrets.ARGOCD_PASSWORD }}"             -H "Content-Type: application/json"             --data '{"name":"demo-app","operation":{"sync":{}}}'             https://argocd.example.com/api/v1/applications/demo-app/sync
+          curl -X POST -u "admin:${{ secrets.ARGOCD_PASSWORD }}"             -H "Content-Type: application/json"             --data '{"name":"demo-app","operation":{"sync":{}}}'             https://51.8.229.103/api/v1/applications/demo-app/sync
