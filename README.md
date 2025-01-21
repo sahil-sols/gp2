@@ -1,34 +1,21 @@
 # ArgoCD AKS Demo
 
-This repository demonstrates an **ArgoCD-based GitOps deployment** for an example application on **Azure Kubernetes Service (AKS)**. It includes **CI/CD pipelines with GitHub Actions**, **network security configurations**, and **scalability features like HPA (Horizontal Pod Autoscaler)**.
+This project demonstrates deploying an application on **Azure Kubernetes Service (AKS)** using **ArgoCD for GitOps**.
 
----
-
-## 🚀 **Features**
-- **ArgoCD for GitOps-based Deployment**
-- **GitHub Actions CI/CD**
-- **Ingress Controller for External Access**
-- **Network Policies for Security**
+## 🚀 Features
+- **CI/CD with GitHub Actions**
+- **Ingress Controller & Network Policies**
 - **HPA for Auto-scaling**
-- **App of Apps pattern for multi-environment deployment**
+- **ArgoCD for GitOps Deployment**
 
+## 🏗 Setup Instructions
+1. Install **ArgoCD on AKS**
+2. Deploy the **Application using ArgoCD**
+3. Configure **GitHub Actions**
+4. Monitor deployment
 
----
-
-## 🎯 **Pre-requisites**
-Before you begin, ensure you have the following:
-- **Azure Kubernetes Service (AKS) cluster**
-- **Azure Container Registry (ACR)**
-- **ArgoCD installed on AKS**
-- **kubectl & Helm installed**
-- **GitHub repository with Actions enabled**
-- **Domain & DNS configured for Ingress**
+For full details, check the documentation.
 
 ---
-
-## 🏗 **Setup Instructions**
-
-### **Step 1: Install ArgoCD on AKS**
-```sh
-kubectl create namespace argocd
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+👨‍💻 Maintainer: *Sahil Sols*  
+🔗 **GitHub Repo**: [gp2](https://github.com/sahil-sols/gp2)

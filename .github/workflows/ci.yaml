@@ -1,0 +1,30 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Login to Azure Container Registry
+        run: echo "${{ secrets.AZURE_CR_PASSWORD }}" | docker login myacr.azurecr.io -u myacr --password-stdin
+
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t myacr.azurecr.io/demo-app:${{ github.sha }} .
+          docker push myacr.azurecr.io/demo-app:${{ github.sha }}
+
+      - name: Update Kubernetes Manifests
+        run: |
+          sed -i "s|myacr.azurecr.io/demo-app:.*|myacr.azurecr.io/demo-app:${{ github.sha }}|g" manifests/overlays/dev/deployment-patch.yaml
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add manifests/overlays/dev/deployment-patch.yaml
+          git commit -m "Update image to ${{ github.sha }}"
+          git push

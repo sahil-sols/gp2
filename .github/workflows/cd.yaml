@@ -1,0 +1,14 @@
+name: CD Pipeline
+
+on:
+  push:
+    paths:
+      - "manifests/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger ArgoCD Sync
+        run: |
+          curl -X POST -u "admin:${{ secrets.ARGOCD_PASSWORD }}"             -H "Content-Type: application/json"             --data '{"name":"demo-app","operation":{"sync":{}}}'             https://argocd.example.com/api/v1/applications/demo-app/sync
