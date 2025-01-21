@@ -16,7 +16,7 @@ jobs:
         run: echo "${{ secrets.AZURE_CR_PASSWORD }}" | docker login azurelabcontainerregistry.azurecr.io -u azureLabContainerRegistry --password-stdin
       - name: Build and Push Docker Image
         run: |
-          docker build -t azurelabcontainerregistry.azurecr.io/demo-app:${{ github.sha }} .
+          docker build -t azurelabcontainerregistry.azurecr.io/demo-app:${{ github.sha }} -f ../src/Dockerfile
           docker push azurelabcontainerregistry.azurecr.io/demo-app:${{ github.sha }}
 
       - name: Update Kubernetes Manifests
